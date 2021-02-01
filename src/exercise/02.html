@@ -4,10 +4,10 @@
 <body>
   <div id="root"></div>
 
-  <!-- 💣 remove this line
+  
   <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
-  💣 remove this line -->
+  
 
   <script type="module">
     const rootElement = document.getElementById('root')
@@ -15,14 +15,54 @@
     // You're going to re-implement this code using React!
     // 💣 So go ahead and delete this implementation (or comment it out for now)
     // These three lines are similar to React.createElement
-    const element = document.createElement('div')
-    element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
-    element.className = 'container' // 💰 in React, this is also called the "className" prop
+    // const element = document.createElement('div')
+    // element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
+    //element.className = 'container' // 💰 in React, this is also called the "className" prop
     // This is similar to ReactDOM.render
-    rootElement.append(element)
 
-    // 🐨 Please re-implement the regular document.createElement code above
-    // with these React API calls
-    // 💰 The example in the markdown file should be a good hint for you.
+
+    /* 
+      Nice way of doing this
+    */
+    // const elementType = "div"
+    // const elementProps = {className: "test-text", children: "Hello, World"}
+    // const reactElement = React.createElement(elementType, elementProps)
+    
+    /*
+      Standard way of doing createElement
+    */ 
+    // const reactElement = React.createElement(
+    //   "div", {
+    //     className: "my-text",
+    //     children: "Hello, world",
+    //   }
+    // )
+
+    const containerElementType = "div"
+    const textWrapType = "span"
+    const containerElements = [
+      React.createElement(
+        textWrapType,
+        { children: "Hello" },
+      ),
+      React.createElement(
+        textWrapType,
+        { children: "World" },
+      )
+    ]
+
+
+
+    const reactElement = React.createElement(
+      containerElementType,
+      {
+        className: "container",
+        children: containerElements
+      }
+    )
+
+
+    ReactDOM.render(reactElement, rootElement)
+
   </script>
 </body>
