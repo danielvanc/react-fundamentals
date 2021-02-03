@@ -8,19 +8,35 @@
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
 
   <script type="text/babel">
-    function message({children}) {
-      return <div className="message">{children}</div>
+    const PropTypes = {
+      string(props, propName, componentName) {
+        const type = typeof props[propName]
+        if (type !== 'string') {
+          return new Error(
+            `Hey, the component ${componentName} needs the prop 
+            ${propName} but was given ${type}`,
+          )
+        }
+      },
     }
 
-    const helloWorld = React.createElement(message, {children: 'Hello World'})
-    const goodbyeWorld = React.createElement(message, {
-      children: 'Goodbye World',
-    })
+    function Message({subject, greeting}) {
+      return (
+        <div className="message">
+          {greeting}, {subject}
+        </div>
+      )
+    }
+
+    Message.propTypes = {
+      subject: PropTypes.string,
+      greeting: PropTypes.string,
+    }
 
     const Element = (
       <div className="container">
-        {helloWorld}
-        {goodbyeWorld}
+        <Message greeting="Hey" subject="World!" />
+        <Message greeting="Bye" subject="World!" />
       </div>
     )
 
