@@ -13,14 +13,17 @@
     }
 
     const helloWorld = React.createElement(message, {children: 'Hello World'})
+    const goodbyeWorld = React.createElement(message, {
+      children: 'Goodbye World',
+    })
 
-    const element = (
+    const Element = (
       <div className="container">
         {helloWorld}
-        {message({children: 'Goodbye World'})}
+        {goodbyeWorld}
       </div>
     )
 
-    ReactDOM.render(element, document.getElementById('root'))
+    ReactDOM.render(Element, document.getElementById('root'))
   </script>
 </body>
